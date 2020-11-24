@@ -5,30 +5,30 @@ import './VendingMachine.css';
 
 const VendingMachine = ({ items }) => {
 
+    const itemList = (
+        <ul className="VendingMachine-items">
+            {items.map(item => (
+                <li key={item.id}>
+                    <Link to={`/${item.id}`}>
+                        {item.name}
+                    </Link>
+                </li>
+            ))}
+        </ul>
+    );
+
+    const backLink = <Link to="/">Go Back</Link>;
+
     return (
         <div className="VendingMachine">
             <BrowserRouter>
                 <Route exact path="/">
                     <h1>Buy somethin' will ya!</h1>
-                    <ul className="VendingMachine-items">
-                        {items.map(item => (
-                            <li key={item.id}>
-                                <Link to={`/${item.id}`}>
-                                    {item.name}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                    {itemList}
                 </Route>
-                {items.map(item => (
-                    <Route key={item.id} exact path={`/${item.id}`}>
-                        <VendingMachineItem
-                            name={item.name}
-                            img={item.img}
-                            backLink={<Link to='/'>Back</Link>}
-                        />
-                    </Route>
-                ))}
+                <Route exact path="/:id">
+                    <VendingMachineItem items={items} backLink={backLink} />
+                </Route>
             </BrowserRouter>
         </div>
     )
