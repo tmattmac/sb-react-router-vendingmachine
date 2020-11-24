@@ -1,0 +1,14 @@
+.VendingMachine, .VendingMachine-items {
+    text-align: center;
+}
+
+.VendingMachine-items {
+    list-style: none;
+    padding: 0;
+}
+
+.VendingMachine-items a {
+    display: inline-block;
+    margin: 0.25em;
+    font-size: 1.5em;
+}
